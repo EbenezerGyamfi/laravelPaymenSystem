@@ -1,0 +1,1 @@
+<small>This is the stripe page</small>

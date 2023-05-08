@@ -11,5 +11,7 @@ class Currency extends Model
 
     protected $fillable = ['iso'];
 
-    public 
+    protected $primaryKey = 'iso';
+
+    public $incrementing = false;
 }
