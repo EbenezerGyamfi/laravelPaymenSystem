@@ -32,4 +32,6 @@ class HomeController extends Controller
             'paymentPlatforms' => $paymentPlatforms
         ]);
     }
+
+    
 }

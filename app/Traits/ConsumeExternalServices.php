@@ -5,7 +5,7 @@ namespace App\Traits;
 
 use GuzzleHttp\Client;
 
-trait consumeExternalServices
+trait ConsumeExternalServices
 {
 
     public function makeRequest($method, $requestUrl, $queryParams = [], $formParams = [], $headers = [], $isJsonRequest = false)

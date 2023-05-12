@@ -17,11 +17,11 @@
 
                         <div class="row ">
                             <div class="col">
-                                <form method="POST" action="" id="paymentForm">
+                                <form method="POST" action="{{route('payments.store')}}" id="paymentForm">
                                     @csrf
                                     <div class="form-group col-6">
                                         <label for="exampleInputPassword1">Make A Payment</label>
-                                        <input type="number" min="5" step="0.01" name="value"
+                                        <input type="number" min="5" step="0.01" name="amount"
                                             class="form-control" id="value">
 
                                         <small class="form-text">
@@ -31,7 +31,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="inputState">Select Currency</label>
-                                            <select id="inputState" class="form-control">
+                                            <select id="inputState" name="iso" class="form-control">
                                                 <option selected>Choose...</option>
                                                 @foreach ($currencies as $currency)
                                                     <option value="{{ $currency->iso }}">{{ strtoupper($currency->iso) }}
