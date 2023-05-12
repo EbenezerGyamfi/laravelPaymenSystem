@@ -17,12 +17,12 @@
 
                         <div class="row ">
                             <div class="col">
-                                <form method="POST" action="">
+                                <form method="POST" action="" id="paymentForm">
                                     @csrf
                                     <div class="form-group col-6">
                                         <label for="exampleInputPassword1">Make A Payment</label>
                                         <input type="number" min="5" step="0.01" name="value"
-                                            value="{{ mt_rand(500, 100000) / 100 }}" class="form-control" id="value">
+                                            class="form-control" id="value">
 
                                         <small class="form-text">
                                             Use value with two decimal position, the default is 2dps
@@ -39,36 +39,28 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                    </div>
 
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <label for="">Select Payment Platform</label>
+                                            <div class="form-group" id="toggler">
+                                                <div class="button-group btn-group-toggle" data-toggle="buttons">
 
-                                        <div class="row mt-3">
-                                            <div class="col">
-                                                <label>
-                                                    Select the desired payment platform
-                                                </label>
-                                                <div class="form-group" id="toggler">
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        @foreach ($paymentPlatforms as $paymentPlatform)
-                                                            <label class="btn btn-outline-secondary rounded m-2 p-1"
-                                                                data-target="#{{ $paymentPlatform->name }}Collapse"
-                                                                data-toggle="collapse">
-                                                                <input type="radio" name="payment_platform"
-                                                                    value="{{ $paymentPlatform->id }}" required>
-                                                                <img class="img-thumbnail"
-                                                                    src="{{ asset($paymentPlatform->image) }}">
-                                                            </label>
-                                                        @endforeach
-                                                    </div>
-                                                    @foreach ($paymentPlatforms as $paymentPlatform)
-                                                        <div id="{{ $paymentPlatform->name }}Collapse" class="collapse"
-                                                            data-parent="#toggler">
-                                                            @includeIf (
-                                                                'components.' .
-                                                                    strtolower($paymentPlatform->name) .
-                                                                    '-collapse')
-                                                        </div>
+                                                    @foreach ($paymentPlatforms as $payment)
+                                                        <label class="btn btn-outline-secondary rounded m-2 p-1" data-target="#{{$payment->name}}collapse" data-toggle="collapse">
+                                                            <input type="radio" name="paymentplatform"
+                                                                value="{{ $payment->id }}" required>
+                                                            <img class="img-thumbnail" src="{{ asset($payment->image) }}">
+                                                        </label>
                                                     @endforeach
                                                 </div>
+                                                @foreach ($paymentPlatforms as $payment)
+                                                    <div id="{{$payment->name}}collapse" class="collapse" data-target="#toggler">
+                                                        @includeif(
+                                                            'components.'.strtolower($payment->name).'-collapse')
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
